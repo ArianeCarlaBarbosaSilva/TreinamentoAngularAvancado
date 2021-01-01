@@ -5,8 +5,6 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError, flatMap } from 'rxjs/operators';
 
 import { Category } from './category.model';
-import { Console } from 'console';
-
 
 @Injectable({
   providedIn: 'root'
