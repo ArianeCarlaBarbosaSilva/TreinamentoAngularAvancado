@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { IMaskModule } from 'angular-imask';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDatabase } from './in-memory-database';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { IMaskModule } from 'angular-imask';
   ],
   imports: [
     BrowserModule,
-    IMaskModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase), //para interceptar as requisições http
     AppRoutingModule
   ],
   providers: [],
