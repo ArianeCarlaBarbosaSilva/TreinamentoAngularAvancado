@@ -8,6 +8,7 @@ import { CategoryService } from '../shared/category.service';
 import { switchMap } from 'rxjs/operators';
 
 import toastr from "toastr";
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 @Component({
   selector: 'app-category-detail',
@@ -38,6 +39,16 @@ export class CategoryDetailComponent implements OnInit, AfterContentChecked {
 
   ngAfterContentChecked() {
     this.setPageTitle();
+  }
+
+  submitForm() {
+    this.submittingForm = true;
+
+    if (this.currentAction == "new") {
+      this.createCategory();
+    } else { //currentAction = "edit"
+      this.updateCategory();
+    }
   }
 
   // PRIVATE METHODS
@@ -80,4 +91,48 @@ export class CategoryDetailComponent implements OnInit, AfterContentChecked {
     }
   }
 
+  private createCategory() {
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+
+    this.categoryService.create(category)
+      .subscribe(
+        category => this.actionsForSuccess(category),
+        error => this.actionsForError(error)
+      )
+  }
+
+  private updateCategory() {
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+
+    this.categoryService.update(category)
+    .subscribe(
+      category => this.actionsForSuccess(category),
+      error => this.actionsForError(error)
+    )
+  }
+
+  private actionsForSuccess(category: Category) {
+    toastr.success("Solicitação processada com sucesso!");
+
+    /*nomedosite.com/categories/new
+      nomedosite.com/categories/
+      nomedosite.com/categories/:id/edit*/
+      //forcar o redirecionamento e recarga da página
+      //nao adicionar essa rota no historico de navegacao do navegador
+
+      this.router.navigateByUrl("categories", {skipLocationChange: true}).then(
+        () => this.router.navigate(["categories", category.id, "edit"])
+      ); 
+  }
+
+  private actionsForError(error) {
+    toastr.error("Ocorreu um erro ao processar a sua solicitação!");
+
+    this.submittingForm = false;
+
+    if (error.status === 422) //o servidor rrecebeu a solicitação mas não conseguiu processar
+      this.serverErrorMessages = JSON.parse(error._body).errors;
+    else
+      this.serverErrorMessages = ["Falha na comunicação com o servidor. Por favor, tente mais tarde."]
+  }
 }
