@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { EntriesRoutingModule } from './entries-routing.module';
+import { SharedModule } from '../../shared/shared.module';
+import { CalendarModule } from 'primeng/calendar';
+import { IMaskModule } from 'angular-imask';
 
 import { EntryListComponent } from './entry-list/entry-list.component';
 import { EntryDetailComponent } from './entry-detail/entry-detail.component';
 
-import { CalendarModule } from 'primeng/calendar';
-import { IMaskModule } from 'angular-imask';
 
 
 @NgModule({
@@ -17,8 +16,7 @@ import { IMaskModule } from 'angular-imask';
     EntryDetailComponent
   ],
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
+    SharedModule,
     CalendarModule,
     IMaskModule,
     EntriesRoutingModule

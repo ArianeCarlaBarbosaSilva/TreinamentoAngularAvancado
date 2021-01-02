@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { CategoriesRoutingModule } from './categories-routing.module';
+import { SharedModule } from '../../shared/shared.module';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 
@@ -10,10 +9,10 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 @NgModule({
   declarations: [
     CategoryListComponent, 
-    CategoryDetailComponent],
+    CategoryDetailComponent
+  ],
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
+    SharedModule,
     CategoriesRoutingModule
   ]
 })
