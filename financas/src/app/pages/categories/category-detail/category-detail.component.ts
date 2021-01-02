@@ -29,8 +29,8 @@ export class CategoryDetailComponent extends BaseResourceFormComponent<Category>
   }
 
   protected editionPageTitle(): string {
-    const categoryName = this.resource.name || "";
-    return "Editando Categoria: " + categoryName;
+    const resourceName = this.resource.name || "";
+    return "Editando Categoria: " + resourceName;
   }
 
 }
