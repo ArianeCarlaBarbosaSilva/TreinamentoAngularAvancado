@@ -1,6 +1,6 @@
-import { OnInit, AfterContentChecked, Injector } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { OnInit, AfterContentChecked, Injector, Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { BaseResourceModel } from '../../models/base-resource.model';
 import { BaseResourceService } from '../../services/base-resource.service';
@@ -8,7 +8,6 @@ import { BaseResourceService } from '../../services/base-resource.service';
 import { switchMap } from 'rxjs/operators';
 
 import toastr from "toastr";
-
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked {
 
     currentAction: string; //new or edit
