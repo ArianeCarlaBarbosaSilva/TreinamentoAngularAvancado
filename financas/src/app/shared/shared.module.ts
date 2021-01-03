@@ -28,7 +28,9 @@ import { ServerErrorMessagesComponent } from './components/server-error-messages
     RouterModule,
     // componentes que serão compartilhados
     BreadCrumbComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    FormFieldErrorComponent,
+    ServerErrorMessagesComponent
   ]
 })
 export class SharedModule { }
